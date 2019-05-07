@@ -1,0 +1,93 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+[^\\.]$"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "vnetName": {
+            "required": true,
+            "type": "string"
+        },
+        "routeName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Azure proxy only resource. This resource is not tracked by Azure Resource Manager.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource Id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "kind": {
+                            "description": "Kind of resource.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource Name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Virtual Network route contract used to pass routing information for a Virtual Network.",
+            "properties": {
+                "properties": {
+                    "description": "VnetRoute resource specific properties",
+                    "properties": {
+                        "endAddress": {
+                            "description": "The ending address for this route. If the start address is specified in CIDR notation, this must be omitted.",
+                            "type": "string"
+                        },
+                        "routeType": {
+                            "description": "The type of route this is:\nDEFAULT - By default, every app has routes to the local address ranges specified by RFC1918\nINHERITED - Routes inherited from the real Virtual Network routes\nSTATIC - Static route set on the app only\n\nThese values will be used for syncing an app's routes with those from a Virtual Network.",
+                            "enum": [
+                                "DEFAULT",
+                                "INHERITED",
+                                "STATIC"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "RouteType"
+                            }
+                        },
+                        "startAddress": {
+                            "description": "The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified.",
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-client-flatten": true
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

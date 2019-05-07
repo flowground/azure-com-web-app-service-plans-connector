@@ -1,0 +1,206 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._\\(\\)]+[^\\.]$"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Azure proxy only resource. This resource is not tracked by Azure Resource Manager.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource Id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "kind": {
+                            "description": "Kind of resource.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource Name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "ARM resource for a app service plan.",
+            "properties": {
+                "properties": {
+                    "description": "AppServicePlanPatchResource resource specific properties",
+                    "properties": {
+                        "freeOfferExpirationTime": {
+                            "description": "The time when the server farm free offer expires.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "geoRegion": {
+                            "description": "Geographical location for the App Service plan.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "hostingEnvironmentProfile": {
+                            "description": "Specification for an App Service Environment to use for this resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID of the App Service Environment.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of the App Service Environment.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type of the App Service Environment.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "hyperV": {
+                            "default": false,
+                            "description": "If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.",
+                            "type": "boolean",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "isSpot": {
+                            "description": "If <code>true</code>, this App Service Plan owns spot instances.",
+                            "type": "boolean"
+                        },
+                        "isXenon": {
+                            "default": false,
+                            "description": "Obsolete: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.",
+                            "type": "boolean",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "maximumElasticWorkerCount": {
+                            "description": "Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "maximumNumberOfWorkers": {
+                            "description": "Maximum number of instances that can be assigned to this App Service plan.",
+                            "format": "int32",
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "numberOfSites": {
+                            "description": "Number of apps assigned to this App Service plan.",
+                            "format": "int32",
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "perSiteScaling": {
+                            "default": false,
+                            "description": "If <code>true</code>, apps assigned to this App Service plan can be scaled independently.\nIf <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.",
+                            "type": "boolean"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state of the App Service Environment.",
+                            "enum": [
+                                "Succeeded",
+                                "Failed",
+                                "Canceled",
+                                "InProgress",
+                                "Deleting"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "ProvisioningState"
+                            }
+                        },
+                        "reserved": {
+                            "default": false,
+                            "description": "If Linux app service plan <code>true</code>, <code>false</code> otherwise.",
+                            "type": "boolean",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "resourceGroup": {
+                            "description": "Resource group of the App Service plan.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "spotExpirationTime": {
+                            "description": "The time when the server farm expires. Valid only if it is a spot server farm.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "status": {
+                            "description": "App Service plan status.",
+                            "enum": [
+                                "Ready",
+                                "Pending",
+                                "Creating"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "StatusOptions"
+                            }
+                        },
+                        "subscription": {
+                            "description": "App Service plan subscription.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "targetWorkerCount": {
+                            "description": "Scaling worker count.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "targetWorkerSizeId": {
+                            "description": "Scaling worker size ID.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "workerTierName": {
+                            "description": "Target worker tier assigned to the App Service plan.",
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-client-flatten": true
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
